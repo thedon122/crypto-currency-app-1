@@ -54,3 +54,25 @@ def load_data():
     coins = {}
     coin_data = json.loads(data.contents[0])
     listings = coin_data['props']['initialState']['cryptocurrency']['listingLatest']['data']
+
+    for i in listings:
+      coins[str(i['id'])] = i['slug']
+
+    coin_name = []
+    coin_symbol = []
+    market_cap = []
+    percent_change_1h = []
+    percent_change_24h = []
+    percent_change_7d = []
+    price = []
+    volume_24h = []
+
+    for i in listings:
+      coin_name.append(i['slug'])
+      coin_symbol.append(i['symbol'])
+      price.append(i['quote'][currency_price_unit]['price'])
+      percent_change_1h.append(i['quote'][currency_price_unit]['percent_change_1h'])
+      percent_change_24h.append(i['quote'][currency_price_unit]['percent_change_24h'])
+      percent_change_7d.append(i['quote'][currency_price_unit]['percent_change_7d'])
+      market_cap.append(i['quote'][currency_price_unit]['market_cap'])
+      volume_24h.append(i['quote'][currency_price_unit]['volume_24h'])
