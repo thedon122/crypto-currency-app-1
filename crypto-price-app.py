@@ -89,3 +89,13 @@ def load_data():
     return df
 
 df = load_data()
+
+## Sidebar - Cryptocurrency selections
+sorted_coin = sorted( df['coin_symbol'] )
+selected_coin = col1.multiselect('Cryptocurrency', sorted_coin, sorted_coin)
+
+df_selected_coin = df[ (df['coin_symbol'].isin(selected_coin)) ] # Filtering data
+
+## Sidebar - Number of coins to display
+num_coin = col1.slider('Display Top N Coins', 1, 100, 100)
+df_coins = df_selected_coin[:num_coin]
