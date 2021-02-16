@@ -76,3 +76,16 @@ def load_data():
       percent_change_7d.append(i['quote'][currency_price_unit]['percent_change_7d'])
       market_cap.append(i['quote'][currency_price_unit]['market_cap'])
       volume_24h.append(i['quote'][currency_price_unit]['volume_24h'])
+      
+      df = pd.DataFrame(columns=['coin_name', 'coin_symbol', 'market_cap', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'price', 'volume_24h'])
+      df['coin_name'] = coin_name
+      df['coin_symbol'] = coin_symbol
+      df['price'] = price
+      df['percent_change_1h'] = percent_change_1h
+      df['percent_change_24h'] = percent_change_24h
+      df['percent_change_7d'] = percent_change_7d
+      df['market_cap'] = market_cap
+      df['volume_24h'] = volume_24h
+    return df
+
+df = load_data()
