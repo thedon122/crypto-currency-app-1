@@ -142,3 +142,19 @@ if percent_timeframe == '7d':
     plt.subplots_adjust(top = 1, bottom = 0)
     df_change['percent_change_7d'].plot(kind='barh', color=df_change.positive_percent_change_7d.map({True: 'g', False: 'r'}))
     col3.pyplot(plt)
+elif percent_timeframe == '24h':
+    if sort_values == 'Yes':
+        df_change = df_change.sort_values(by=['percent_change_24h'])
+    col3.write('*24 hour period*')
+    plt.figure(figsize=(5,25))
+    plt.subplots_adjust(top = 1, bottom = 0)
+    df_change['percent_change_24h'].plot(kind='barh', color=df_change.positive_percent_change_24h.map({True: 'g', False: 'r'}))
+    col3.pyplot(plt)
+else:
+    if sort_values == 'Yes':
+        df_change = df_change.sort_values(by=['percent_change_1h'])
+    col3.write('*1 hour period*')
+    plt.figure(figsize=(5,25))
+    plt.subplots_adjust(top = 1, bottom = 0)
+    df_change['percent_change_1h'].plot(kind='barh', color=df_change.positive_percent_change_1h.map({True: 'g', False: 'r'}))
+    col3.pyplot(plt)
