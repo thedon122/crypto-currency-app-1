@@ -121,3 +121,12 @@ def filedownload(df):
     return href
 
 col2.markdown(filedownload(df_selected_coin), unsafe_allow_html=True)
+
+# Preparing data for Bar plot of % Price change
+col2.subheader('Table of % Price Change')
+df_change = pd.concat([df_coins.coin_symbol, df_coins.percent_change_1h, df_coins.percent_change_24h, df_coins.percent_change_7d], axis=1)
+df_change = df_change.set_index('coin_symbol')
+df_change['positive_percent_change_1h'] = df_change['percent_change_1h'] > 0
+df_change['positive_percent_change_24h'] = df_change['percent_change_24h'] > 0
+df_change['positive_percent_change_7d'] = df_change['percent_change_7d'] > 0
+col2.dataframe(df_change)
