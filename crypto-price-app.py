@@ -130,3 +130,15 @@ df_change['positive_percent_change_1h'] = df_change['percent_change_1h'] > 0
 df_change['positive_percent_change_24h'] = df_change['percent_change_24h'] > 0
 df_change['positive_percent_change_7d'] = df_change['percent_change_7d'] > 0
 col2.dataframe(df_change)
+
+# Conditional creation of Bar plot (time frame)
+col3.subheader('Bar plot of % Price Change')
+
+if percent_timeframe == '7d':
+    if sort_values == 'Yes':
+        df_change = df_change.sort_values(by=['percent_change_7d'])
+    col3.write('*7 days period*')
+    plt.figure(figsize=(5,25))
+    plt.subplots_adjust(top = 1, bottom = 0)
+    df_change['percent_change_7d'].plot(kind='barh', color=df_change.positive_percent_change_7d.map({True: 'g', False: 'r'}))
+    col3.pyplot(plt)
